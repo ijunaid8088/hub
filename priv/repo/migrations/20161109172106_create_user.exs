@@ -7,9 +7,6 @@ defmodule Hub.Repo.Migrations.CreateUser do
       add :lastname, :string
       add :username, :string
       add :email, :string
-      add :company_name, :string
-      add :company_url, :string
-      add :company_role, :string
       add :token, :string
       add :password, :string
       add :is_admin, :boolean, default: true
