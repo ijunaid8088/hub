@@ -12,6 +12,7 @@ defmodule Hub.Repo.Migrations.CreateUser do
       add :company_role, :string
       add :token, :string
       add :password, :string
+      add :is_admin, :boolean, default: true
 
       timestamps()
     end

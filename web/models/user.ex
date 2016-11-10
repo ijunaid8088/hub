@@ -11,6 +11,7 @@ defmodule Hub.User do
     field :company_role, :string
     field :token, :string
     field :password, :string
+    field :is_admin, :boolean
 
     timestamps()
   end
@@ -33,8 +34,8 @@ defmodule Hub.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:firstname, :lastname, :email, :company_name, :company_url, :company_role, :token, :password, :username])
-    |> validate_required([:firstname, :lastname, :email, :company_name, :company_url, :company_role, :token, :password, :username])
+    |> cast(params, [:firstname, :lastname, :email, :company_name, :company_url, :company_role, :token, :password, :username, :is_admin])
+    |> validate_required([:firstname, :lastname, :email, :company_name, :company_url, :company_role, :token, :password, :username, :is_admin])
     |> validate_length(:password, [min: 6, message: "Password should be at least 6 character(s)."])
     |> encrypt_password
     |> update_change(:username, &String.downcase/1)
