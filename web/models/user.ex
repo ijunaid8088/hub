@@ -8,8 +8,7 @@ defmodule Hub.User do
     field :company_name, :string
     field :company_url, :string
     field :company_role, :string
-    field :api_id, :string
-    field :api_key, :string
+    field :token, :string
     field :password, :string
 
     timestamps()
@@ -20,7 +19,7 @@ defmodule Hub.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:firstname, :lastname, :email, :company_name, :company_url, :company_role, :api_key, :api_id, :password])
-    |> validate_required([:firstname, :lastname, :email, :company_name, :company_url, :company_role, :api_key, :api_id, :password])
+    |> cast(params, [:firstname, :lastname, :email, :company_name, :company_url, :company_role, :token, :password])
+    |> validate_required([:firstname, :lastname, :email, :company_name, :company_url, :company_role, :token, :password])
   end
 end

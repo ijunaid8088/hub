@@ -9,8 +9,7 @@ defmodule Hub.Repo.Migrations.CreateUser do
       add :company_name, :string
       add :company_url, :string
       add :company_role, :string
-      add :api_id, :string
-      add :api_key, :string
+      add :token, :string
       add :password, :string
 
       timestamps()
