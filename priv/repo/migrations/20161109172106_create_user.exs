@@ -5,6 +5,7 @@ defmodule Hub.Repo.Migrations.CreateUser do
     create table(:users) do
       add :firstname, :string
       add :lastname, :string
+      add :username, :string
       add :email, :string
       add :company_name, :string
       add :company_url, :string
