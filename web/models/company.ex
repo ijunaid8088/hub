@@ -4,7 +4,7 @@ defmodule Hub.Company do
   schema "companies" do
     field :name, :string
     field :namespace, :string
-    belongs_to :user, Hub.User
+    belongs_to :user, Hub.User, foreign_key: :user_id
 
     timestamps()
   end
@@ -14,7 +14,7 @@ defmodule Hub.Company do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :namespace])
-    |> validate_required([:name, :namespace])
+    |> cast(params, [:name, :namespace, :user_id])
+    |> validate_required([:name, :namespace, :user_id])
   end
 end
