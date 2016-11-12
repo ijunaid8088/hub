@@ -24,5 +24,6 @@ defmodule Hub.Router do
     pipe_through :api
 
     post "/users", UserController, :create
+    post "/companies", CompanyController, :create
   end
 end
