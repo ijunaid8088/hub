@@ -3,7 +3,7 @@ defmodule Hub.CompanyController do
 
   alias Hub.Company
 
-  def create(conn, %{"company" => company_params}) do
+  def create(conn, company_params) do
     changeset = Company.changeset(%Company{}, company_params)
 
     case Repo.insert(changeset) do
