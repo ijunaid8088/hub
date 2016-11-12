@@ -10,9 +10,6 @@ defmodule Hub.UserView do
       firstname: user.firstname,
       lastname: user.lastname,
       email: user.email,
-      company_name: user.company_name,
-      company_url: user.company_url,
-      company_role: user.company_role,
       username: user.username,
       is_admin: user.is_admin
     }
