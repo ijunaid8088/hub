@@ -1,8 +1,12 @@
 defmodule Hub.CompanyView do
   use Hub.Web, :view
 
+  def render("index.json", %{companies: companies}) do
+    %{companies: render_many(companies, __MODULE__, "company.json")}
+  end
+
   def render("show.json", %{company: company}) do
-    %{company: render_one(company, Hub.CompanyView, "company.json")}
+    %{company: render_one(company, __MODULE__, "company.json")}
   end
 
   def render("company.json", %{company: company}) do
