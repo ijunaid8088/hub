@@ -33,6 +33,8 @@ defmodule Hub.User do
     struct
     |> cast(params, [:firstname, :lastname, :email, :token, :password, :username, :is_admin])
     |> validate_required([:firstname, :lastname, :email, :token, :password, :username, :is_admin])
+    |> unique_constraint(:username, [name: :user_username_unique_index, message: "Username has already been taken."])
+    |> unique_constraint(:email, [name: :user_email_unique_index, message: "Email has already been taken."])
     |> validate_length(:password, [min: 6, message: "Password should be at least 6 character(s)."])
     |> encrypt_password
     |> update_change(:username, &String.downcase/1)
