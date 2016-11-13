@@ -3,6 +3,11 @@ defmodule Hub.UserController do
 
   alias Hub.User
 
+  def index(conn, _params) do
+    users = Repo.all(User)
+    render(conn, "index.json", users: users)
+  end
+
   def create(conn, user_params) do
     token = Enum.concat(?a..?z, ?0..?9) |> Enum.take_random(4)
     user_params = user_params |> Map.merge(%{"token" => "hub#{token}hub"})
