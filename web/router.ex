@@ -23,7 +23,10 @@ defmodule Hub.Router do
   scope "/api", Hub do
     pipe_through :api
 
+    get "/users", UserController, :index
     post "/users", UserController, :create
+
+    get "/companies", CompanyController, :index
     post "/companies", CompanyController, :create
   end
 end
