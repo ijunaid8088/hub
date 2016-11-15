@@ -24,6 +24,7 @@ defmodule Hub.Router do
     pipe_through :api
 
     get "/users", UserController, :index
+    get "/users/:username", UserController, :show
     post "/users", UserController, :create
 
     get "/companies", CompanyController, :index
