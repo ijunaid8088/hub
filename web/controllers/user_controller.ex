@@ -12,10 +12,10 @@ defmodule Hub.UserController do
       user = User.by_username(username)
       render(conn, "show.json", user: user)
     else
-      {:invalid} ->
+      {:invalid, message} ->
         conn
         |> put_status(401)
-        |> render(ErrorView, "error.json", %{message: "Token is not valid!"})
+        |> render(ErrorView, "error.json", %{message: message})
     end
   end
 
