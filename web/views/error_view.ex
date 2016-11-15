@@ -1,8 +1,10 @@
 defmodule Hub.ErrorView do
   use Hub.Web, :view
 
-  def render("404.html", _assigns) do
-    "Page not found"
+  def render("error.json", %{message: message}) do
+    %{
+      message: message
+    }
   end
 
   def render("500.html", _assigns) do
