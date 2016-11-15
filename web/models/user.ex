@@ -1,5 +1,7 @@
 defmodule Hub.User do
   use Hub.Web, :model
+  import Ecto.Query
+  alias Hub.Repo
 
   schema "users" do
     field :firstname, :string
@@ -24,6 +26,20 @@ defmodule Hub.User do
 
   def hash_password(password) do
     Comeonin.Bcrypt.hashpass(password, Comeonin.Bcrypt.gen_salt(12, true))
+  end
+
+  def by_username(username) do
+    Hub.User
+    |> where(username: ^username)
+    |> Repo.one
+  end
+
+  def by_token(nil), do: nil
+  def by_token(""), do: nil
+  def by_token(token) do
+    Hub.User
+    |> where(token: ^token)
+    |> Repo.one
   end
 
   @doc """
