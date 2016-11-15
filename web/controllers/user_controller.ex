@@ -1,7 +1,22 @@
 defmodule Hub.UserController do
   use Hub.Web, :controller
 
+  import Hub.UserValidators
+
   alias Hub.User
+  alias Hub.ErrorView
+
+  def show(conn, %{"username" => username} = params) do
+    with :ok <- validate_token(params["token"]) do
+      user = User.by_username(username)
+      render(conn, "show.json", user: user)
+    else
+      {:invalid} ->
+        conn
+        |> put_status(401)
+        |> render(ErrorView, "error.json", %{message: "Token is not valid!"})
+    end
+  end
 
   def index(conn, _params) do
     users = Repo.all(User)
