@@ -6,7 +6,7 @@ defmodule Hub.UserValidators do
       :ok
     else
       nil ->
-        {:invalid}
+        {:invalid, "Token is invalid!"}
     end
   end
 
@@ -14,11 +14,11 @@ defmodule Hub.UserValidators do
     with %Hub.User{password: u_password} <- User.by_username(username) do
       case Comeonin.Bcrypt.checkpw(password, u_password) do
         true  -> :ok
-        false -> {:invalid}
+        false -> {:invalid, "Password is invalid!"}
        end
     else
       nil ->
-        {:invalid}
+        {:invalid, "Password is invalid!"}
     end
   end
 end
