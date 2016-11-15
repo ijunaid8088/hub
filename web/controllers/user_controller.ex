@@ -7,7 +7,8 @@ defmodule Hub.UserController do
   alias Hub.ErrorView
 
   def show(conn, %{"username" => username} = params) do
-    with :ok <- validate_token(params["token"]) do
+    with :ok <- validate_token(params["token"]),
+         :ok <- validate_password(username, params["password"]) do
       user = User.by_username(username)
       render(conn, "show.json", user: user)
     else
